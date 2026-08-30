@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Event Risk Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f4f6f8;
+            color: #1f2933;
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #52606d;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #e4e7eb;
+            text-align: left;
+        }
+
+        th {
+            background: #102a43;
+            color: white;
+        }
+
+        .low {
+            color: #087f5b;
+            font-weight: bold;
+        }
+
+        .medium {
+            color: #b7791f;
+            font-weight: bold;
+        }
+
+        .high {
+            color: #c05621;
+            font-weight: bold;
+        }
+
+        .critical {
+            color: #c53030;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Security Event Risk Dashboard</h1>
+    <p class="subtitle">
+        Prioritized visibility into security events and calculated risk.
+    </p>
+
+    {% if events %}
+    <table>
+        <thead>
+            <tr>
+                <th>Event Type</th>
+                <th>Severity</th>
+                <th>Risk Score</th>
+                <th>Description</th>
+                <th>Source IP</th>
+                <th>Created</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{ event.event_type }}</td>
+                <td class="{{ event.severity }}">
+                    {{ event.severity.title() }}
+                </td>
+                <td>{{ event.risk_score }}/100</td>
+                <td>{{ event.description }}</td>
+                <td>{{ event.source_ip or "N/A" }}</td>
+                <td>{{ event.created_at.strftime("%Y-%m-%d %H:%M") }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No security events have been recorded yet.</p>
+    {% endif %}
+</body>
+</html>
