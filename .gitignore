@@ -5,7 +5,4 @@ __pycache__/
 *.db
 .DS_Store
 .env
-
-cat >> .gitignore <<'EOF'
-.idea/
 .idea/
