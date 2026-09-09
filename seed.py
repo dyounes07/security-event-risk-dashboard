@@ -27,9 +27,11 @@ sample_events = [
 
 
 with app.app_context():
+
+    # reset database for testing demos
     db.drop_all()
     db.create_all()
-
+    
     for data in sample_events:
         event = SecurityEvent(
             event_type=data["event_type"],
