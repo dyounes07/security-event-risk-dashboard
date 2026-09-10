@@ -8,7 +8,7 @@ A Flask-based dashboard for tracking and prioritizing security events using rule
 - SQLite database with SQLAlchemy
 - Rule-based risk scoring
 - REST API for retrieving and creating security events
-- Automated tests with pytest
+- Data seeding script
 
 ## Setup
 
